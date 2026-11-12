@@ -1,21 +1,352 @@
 
-<!-- ================= SHAH DOL DISTRICT CHATBOT ================= -->
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Shahdol District Information Portal - मध्य प्रदेश के शहडोल जिले की संपूर्ण जानकारी।">
+<title>Shahdol District | Official Information Portal</title>
 
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f7f5;
+    color: #333;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* TOP BAR */
+.topbar {
+    background: #075c3d;
+    color: white;
+    padding: 9px 6%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 13px;
+}
+
+/* HEADER */
+header {
+    background: white;
+    padding: 15px 6%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 8px #0001;
+}
+
+.logo {
+    width: 65px;
+    height: 65px;
+    background: #087c55;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+}
+
+.header-text h1 {
+    color: #075c3d;
+    font-size: 25px;
+}
+
+.header-text p {
+    color: #666;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* NAVIGATION */
+nav {
+    background: #087c55;
+    padding: 0 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 16px 18px;
+    font-size: 14px;
+    transition: .3s;
+}
+
+nav ul li a:hover {
+    background: #064c35;
+}
+
+/* HERO */
+.hero {
+    min-height: 470px;
+    background:
+    linear-gradient(90deg, rgba(0,45,30,.85), rgba(0,0,0,.25)),
+    url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 60px 8%;
+    color: white;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero h2 {
+    font-size: 45px;
+    margin-bottom: 18px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.hero-btn {
+    display: inline-block;
+    background: #f4b400;
+    color: #222;
+    padding: 13px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* COMMON SECTION */
+section {
+    padding: 55px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    color: #075c3d;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #777;
+}
+
+.line {
+    width: 65px;
+    height: 4px;
+    background: #e6a900;
+    margin: 12px auto;
+}
+
+/* INTRO */
+.intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.intro img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.intro-text h2 {
+    color: #075c3d;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.intro-text p {
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    display: inline-block;
+    background: #087c55;
+    color: white;
+    padding: 11px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* STATISTICS */
+.stats {
+    background: #075c3d;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center;
+    color: white;
+}
+
+.stat h2 {
+    font-size: 30px;
+    color: #ffcf40;
+    margin-bottom: 10px;
+}
+
+.stat p {
+    font-size: 14px;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px #0001;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    color: #075c3d;
+    margin-bottom: 12px;
+}
+
+.card-content p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.card-content a {
+    text-decoration: none;
+    color: #087c55;
+    font-weight: bold;
+}
+
+/* QUICK LINKS */
+.quick-links {
+    background: #eaf4ee;
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.quick-card {
+    background: white;
+    padding: 25px 15px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px #0001;
+    text-decoration: none;
+    color: #075c3d;
+    transition: .3s;
+}
+
+.quick-card:hover {
+    background: #087c55;
+    color: white;
+}
+
+.quick-card span {
+    font-size: 35px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+/* FOOTER */
+footer {
+    background: #063c2b;
+    color: white;
+    padding: 40px 7% 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+footer h3 {
+    margin-bottom: 15px;
+    color: #ffcf40;
+}
+
+footer p, footer a {
+    color: #ddd;
+    text-decoration: none;
+    line-height: 2;
+    font-size: 14px;
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid #ffffff33;
+    margin-top: 30px;
+    padding-top: 20px;
+}
+
+/* CHATBOT */
 #chatbot-button {
     position: fixed;
     bottom: 25px;
     right: 25px;
     width: 65px;
     height: 65px;
+    border: none;
     border-radius: 50%;
     background: #087c55;
     color: white;
-    border: none;
     font-size: 30px;
     cursor: pointer;
-    box-shadow: 0 5px 20px #0004;
     z-index: 9999;
+    box-shadow: 0 4px 15px #0004;
 }
 
 #chatbot-window {
@@ -24,57 +355,56 @@
     bottom: 105px;
     right: 25px;
     width: 350px;
-    height: 480px;
+    height: 470px;
     background: white;
     border-radius: 15px;
-    box-shadow: 0 5px 30px #0004;
     overflow: hidden;
+    box-shadow: 0 5px 30px #0004;
     z-index: 9999;
-    font-family: Arial, sans-serif;
 }
 
 .chat-header {
     background: #087c55;
     color: white;
-    padding: 17px;
+    padding: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.chat-header h3 {
-    margin: 0;
-    font-size: 18px;
+.chat-header small {
+    display: block;
+    margin-top: 5px;
 }
 
 #close-chat {
     background: none;
-    border: none;
     color: white;
-    font-size: 24px;
+    border: none;
+    font-size: 25px;
     cursor: pointer;
 }
 
 #chat-messages {
-    height: 340px;
-    padding: 15px;
+    height: 335px;
+    padding: 12px;
     overflow-y: auto;
-    background: #f5f7f6;
+    background: #f5f7f5;
 }
 
 .message {
-    padding: 10px 13px;
-    margin: 10px 0;
+    padding: 11px;
+    margin: 9px 0;
     border-radius: 12px;
     max-width: 85%;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.6;
+    white-space: pre-line;
 }
 
 .bot-message {
     background: #e0f2e9;
     color: #164b35;
-    margin-right: auto;
 }
 
 .user-message {
@@ -85,50 +415,303 @@
 
 .chat-input-area {
     display: flex;
-    padding: 12px;
-    border-top: 1px solid #ddd;
+    padding: 10px;
     gap: 7px;
 }
 
 #chat-input {
     flex: 1;
     min-width: 0;
-    padding: 11px;
     border: 1px solid #ccc;
     border-radius: 20px;
-    outline: none;
+    padding: 10px;
 }
 
 #send-message {
+    border: none;
+    border-radius: 20px;
     background: #087c55;
     color: white;
-    border: none;
     padding: 10px 15px;
-    border-radius: 20px;
     cursor: pointer;
 }
 
-@media(max-width: 450px) {
+/* MOBILE */
+@media(max-width: 768px) {
+    header {
+        padding: 12px 4%;
+    }
+
+    .header-text h1 {
+        font-size: 19px;
+    }
+
+    nav ul {
+        justify-content: center;
+    }
+
+    nav ul li a {
+        padding: 12px 9px;
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 380px;
+    }
+
+    .hero h2 {
+        font-size: 32px;
+    }
+
+    .intro {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .links-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 400px) {
     #chatbot-window {
         width: calc(100% - 30px);
         right: 15px;
-        bottom: 95px;
     }
 }
 </style>
 
-<!-- Chatbot Button -->
-<button id="chatbot-button" onclick="toggleChat()">
+<!-- TOP BAR -->
+<div class="topbar">
+    <span>Government of Madhya Pradesh</span>
+    <span>Shahdol District Information Portal</span>
+</div>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">🏛️</div>
+    <div class="header-text">
+        <h1>SHAHDOL DISTRICT</h1>
+        <p>शहडोल जिला सूचना पोर्टल | मध्य प्रदेश</p>
+    </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="directory.html">Directory</a></li>
+        <li><a href="tourism.html">Tourism</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-content">
+        <h2>Welcome to Shahdol District</h2>
+        <p>
+            Discover the beauty, culture, history and development
+            of Shahdol District, Madhya Pradesh.
+            Explore complete district information in one place.
+        </p>
+        <a href="about.html" class="hero-btn">Explore More →</a>
+    </div>
+</div>
+
+<!-- INTRODUCTION -->
+<section>
+    <div class="intro">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900"
+             alt="Nature and forest">
+
+        <div class="intro-text">
+            <h2>About Shahdol District</h2>
+            <p>
+                शहडोल मध्य प्रदेश का एक महत्वपूर्ण जिला है।
+                यह अपनी प्राकृतिक सुंदरता, वन संपदा,
+                खनिज संसाधनों और सांस्कृतिक विरासत के लिए
+                जाना जाता है।
+            </p>
+            <p>
+                इस पोर्टल के माध्यम से आप जिले के इतिहास,
+                पर्यटन स्थलों, शिक्षा, स्वास्थ्य सेवाओं,
+                सरकारी कार्यालयों और अन्य महत्वपूर्ण
+                जानकारियों को प्राप्त कर सकते हैं।
+            </p>
+            <a href="about.html" class="read-more">Read More</a>
+        </div>
+    </div>
+</section>
+
+<!-- STATISTICS -->
+<section class="stats">
+    <div class="stat">
+        <h2>1956</h2>
+        <p>District Formation Year</p>
+    </div>
+
+    <div class="stat">
+        <h2>6</h2>
+        <p>Tehsils (Verify Latest List)</p>
+    </div>
+
+    <div class="stat">
+        <h2>MP</h2>
+        <p>Madhya Pradesh</p>
+    </div>
+
+    <div class="stat">
+        <h2>SHAHDOL</h2>
+        <p>District Headquarters</p>
+    </div>
+</section>
+
+<!-- TOURISM -->
+<section>
+    <div class="section-title">
+        <h2>Tourist Attractions</h2>
+        <div class="line"></div>
+        <p>Explore the beautiful places of Shahdol</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=700"
+                 alt="Temple">
+            <div class="card-content">
+                <h3>Virateshwar Temple</h3>
+                <p>सोहागपुर स्थित ऐतिहासिक मंदिर, जो अपनी प्राचीन वास्तुकला के लिए प्रसिद्ध है।</p>
+                <a href="tourism.html">Explore More →</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=700"
+                 alt="Nature">
+            <div class="card-content">
+                <h3>Bansagar Dam</h3>
+                <p>बाणसागर बांध सोन नदी पर स्थित एक महत्वपूर्ण जल परियोजना है।</p>
+                <a href="tourism.html">Explore More →</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700"
+                 alt="Forest">
+            <div class="card-content">
+                <h3>Natural Beauty</h3>
+                <p>शहडोल क्षेत्र के वन और प्राकृतिक दृश्य इसकी खूबसूरती बढ़ाते हैं।</p>
+                <a href="tourism.html">Explore More →</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- QUICK LINKS -->
+<section class="quick-links">
+    <div class="section-title">
+        <h2>Important Information</h2>
+        <div class="line"></div>
+        <p>Find important district services and information</p>
+    </div>
+
+    <div class="links-grid">
+        <a href="directory.html" class="quick-card">
+            <span>🏢</span>
+            District Directory
+        </a>
+
+        <a href="education.html" class="quick-card">
+            <span>🎓</span>
+            Education
+        </a>
+
+        <a href="health.html" class="quick-card">
+            <span>🏥</span>
+            Health Services
+        </a>
+
+        <a href="tourism.html" class="quick-card">
+            <span>🏞️</span>
+            Tourism
+        </a>
+
+        <a href="government.html" class="quick-card">
+            <span>🏛️</span>
+            Government Offices
+        </a>
+
+        <a href="schemes.html" class="quick-card">
+            <span>📋</span>
+            Government Schemes
+        </a>
+
+        <a href="contact.html" class="quick-card">
+            <span>📞</span>
+            Contact
+        </a>
+
+        <a href="gallery.html" class="quick-card">
+            <span>📸</span>
+            Photo Gallery
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h3>About Shahdol</h3>
+            <p>Shahdol District Information Portal provides information about the district, its people, culture and services.</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <p><a href="about.html">About Us</a></p>
+            <p><a href="directory.html">Directory</a></p>
+            <p><a href="tourism.html">Tourism</a></p>
+        </div>
+
+        <div>
+            <h3>Useful Website</h3>
+            <p><a href="https://shahdol.nic.in/" target="_blank">Official Shahdol Website</a></p>
+            <p><a href="https://mp.gov.in/" target="_blank">MP Government</a></p>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>© 2026 Shahdol District Information Portal | Educational Project</p>
+    </div>
+</footer>
+
+<!-- CHATBOT BUTTON -->
+<button id="chatbot-button" onclick="toggleChat()" aria-label="Open chatbot">
     💬
 </button>
 
-<!-- Chatbot Window -->
+<!-- CHATBOT WINDOW -->
 <div id="chatbot-window">
-
     <div class="chat-header">
         <div>
-            <h3>🤖 Shahdol Help Assistant</h3>
-            <small>District Information Chatbot</small>
+            <h3>🤖 Shahdol Assistant</h3>
+            <small>District Help Center</small>
         </div>
         <button id="close-chat" onclick="toggleChat()">×</button>
     </div>
@@ -136,111 +719,106 @@
     <div id="chat-messages">
         <div class="message bot-message">
             नमस्कार! 🙏<br>
-            Shahdol District Information Portal में आपका स्वागत है।<br><br>
-            मैं आपकी क्या सहायता कर सकता हूँ?
+            Shahdol District Portal में आपका स्वागत है।<br>
+            आप मुझसे जिले के बारे में कुछ भी पूछ सकते हैं।
         </div>
     </div>
 
     <div class="chat-input-area">
-        <input
-            type="text"
-            id="chat-input"
-            placeholder="अपना सवाल लिखें..."
-            onkeypress="if(event.key==='Enter') sendMessage()"
-        >
-        <button id="send-message" onclick="sendMessage()">
-            Send
-        </button>
+        <input type="text" id="chat-input"
+               placeholder="अपना सवाल लिखें...">
+        <button id="send-message" onclick="sendMessage()">Send</button>
     </div>
-
 </div>
 
 <script>
+// CHATBOT OPEN / CLOSE
 function toggleChat() {
-    const chat = document.getElementById("chatbot-window");
+    let chat = document.getElementById("chatbot-window");
 
     chat.style.display =
         chat.style.display === "block" ? "none" : "block";
 }
 
+// SEND MESSAGE
 function sendMessage() {
-
     let input = document.getElementById("chat-input");
     let message = input.value.trim();
 
-    if (message === "") return;
+    if (!message) return;
 
     addMessage(message, "user-message");
-
     input.value = "";
 
-    setTimeout(() => {
-        let reply = getBotReply(message);
-        addMessage(reply, "bot-message");
-    }, 500);
+    setTimeout(function() {
+        addMessage(getBotReply(message), "bot-message");
+    }, 400);
 }
 
-function addMessage(text, className) {
-
-    let messages = document.getElementById("chat-messages");
-
+// ADD MESSAGE
+function addMessage(text, type) {
+    let box = document.getElementById("chat-messages");
     let div = document.createElement("div");
-    div.className = "message " + className;
+
+    div.className = "message " + type;
     div.textContent = text;
 
-    messages.appendChild(div);
-
-    messages.scrollTop = messages.scrollHeight;
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight;
 }
 
+// BOT REPLY
 function getBotReply(message) {
-
     let msg = message.toLowerCase();
 
     if (msg.includes("hello") || msg.includes("hi") ||
-        msg.includes("namaste")) {
-        return "नमस्कार! 🙏 शाहडोल जिला सूचना पोर्टल में आपका स्वागत है।";
+        msg.includes("नमस्ते")) {
+        return "नमस्कार! 😊 मैं Shahdol District Assistant हूँ। आप क्या जानना चाहते हैं?";
     }
 
     if (msg.includes("shahdol") || msg.includes("शहडोल")) {
-        return "शहडोल मध्य प्रदेश का एक जिला है। यह अपने प्राकृतिक संसाधनों, जंगलों और ऐतिहासिक महत्व के लिए जाना जाता है।";
-    }
-
-    if (msg.includes("collector") || msg.includes("कलेक्टर")) {
-        return "शहडोल जिले के वर्तमान कलेक्टर की जानकारी के लिए आधिकारिक जिला वेबसाइट का कलेक्टर एवं जिला मजिस्ट्रेट अनुभाग देखें।";
-    }
-
-    if (msg.includes("tourist") || msg.includes("पर्यटन")) {
-        return "शहडोल जिले में विराट मंदिर (सोहागपुर), बाणसागर बांध और देवलोंद जैसे दर्शनीय स्थल हैं।";
-    }
-
-    if (msg.includes("hospital") || msg.includes("अस्पताल")) {
-        return "शहडोल में जिला चिकित्सालय सहित कई स्वास्थ्य केंद्र उपलब्ध हैं। अस्पतालों की सूची के लिए Directory पेज देखें।";
-    }
-
-    if (msg.includes("education") || msg.includes("school") ||
-        msg.includes("college") || msg.includes("शिक्षा")) {
-        return "शहडोल जिले में स्कूल, कॉलेज और उच्च शिक्षा संस्थान उपलब्ध हैं। अधिक जानकारी के लिए Education सेक्शन देखें।";
-    }
-
-    if (msg.includes("tehsil") || msg.includes("तहसील")) {
-        return "शहडोल जिले की तहसीलों की सूची और संबंधित जानकारी के लिए Directory पेज देखें।";
+        return "शहडोल मध्य प्रदेश का एक जिला है। इसका जिला मुख्यालय शहडोल नगर में स्थित है।";
     }
 
     if (msg.includes("history") || msg.includes("इतिहास")) {
-        return "शहडोल का इतिहास, संस्कृति और स्थानीय विरासत जिले की पहचान का महत्वपूर्ण हिस्सा हैं।";
+        return "शहडोल का इतिहास प्राचीन सांस्कृतिक विरासत और ऐतिहासिक स्थलों से जुड़ा हुआ है। अधिक जानकारी के लिए About पेज देखें।";
     }
 
-    if (msg.includes("population") || msg.includes("जनसंख्या")) {
-        return "शहडोल की जनसंख्या संबंधी आधिकारिक जानकारी के लिए नवीनतम जनगणना और जिला सांख्यिकी देखें।";
+    if (msg.includes("tourism") || msg.includes("पर्यटन")) {
+        return "शहडोल के प्रमुख दर्शनीय स्थलों में विराटेश्वर मंदिर और बाणसागर क्षेत्र शामिल हैं।";
+    }
+
+    if (msg.includes("collector") || msg.includes("कलेक्टर")) {
+        return "वर्तमान कलेक्टर की जानकारी के लिए आधिकारिक वेबसाइट shahdol.nic.in देखें।";
+    }
+
+    if (msg.includes("hospital") || msg.includes("अस्पताल")) {
+        return "शहडोल में जिला चिकित्सालय और अन्य स्वास्थ्य केंद्र उपलब्ध हैं। Directory और Health पेज देखें।";
+    }
+
+    if (msg.includes("school") || msg.includes("college") ||
+        msg.includes("education") || msg.includes("शिक्षा")) {
+        return "शहडोल में अनेक शैक्षणिक संस्थान हैं। जानकारी के लिए Education पेज खोलें।";
+    }
+
+    if (msg.includes("tehsil") || msg.includes("तहसील")) {
+        return "शहडोल जिले की तहसीलों की नवीनतम सूची के लिए Directory पेज देखें।";
     }
 
     if (msg.includes("thank") || msg.includes("धन्यवाद")) {
-        return "आपका स्वागत है! 😊 शाहडोल जिला पोर्टल पर आने के लिए धन्यवाद।";
+        return "आपका स्वागत है! 😊 धन्यवाद।";
     }
 
-    return "क्षमा करें! मुझे इस सवाल की पूरी जानकारी नहीं है। कृपया शाहडोल जिले, पर्यटन, शिक्षा, अस्पताल या तहसील से संबंधित सवाल पूछें।";
+    return "क्षमा करें, इस सवाल का जवाब मेरे पास अभी उपलब्ध नहीं है। आप शहडोल के इतिहास, पर्यटन, शिक्षा, अस्पताल या तहसील के बारे में पूछ सकते हैं।";
 }
+
+// ENTER KEY SUPPORT
+document.getElementById("chat-input").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+});
 </script>
 
-<!-- ================= END CHATBOT ================= -->
+</body>
+</html>
