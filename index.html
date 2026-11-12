@@ -1,0 +1,246 @@
+
+<!-- ================= SHAH DOL DISTRICT CHATBOT ================= -->
+
+<style>
+#chatbot-button {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #087c55;
+    color: white;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px #0004;
+    z-index: 9999;
+}
+
+#chatbot-window {
+    display: none;
+    position: fixed;
+    bottom: 105px;
+    right: 25px;
+    width: 350px;
+    height: 480px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 30px #0004;
+    overflow: hidden;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+}
+
+.chat-header {
+    background: #087c55;
+    color: white;
+    padding: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+#close-chat {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#chat-messages {
+    height: 340px;
+    padding: 15px;
+    overflow-y: auto;
+    background: #f5f7f6;
+}
+
+.message {
+    padding: 10px 13px;
+    margin: 10px 0;
+    border-radius: 12px;
+    max-width: 85%;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.bot-message {
+    background: #e0f2e9;
+    color: #164b35;
+    margin-right: auto;
+}
+
+.user-message {
+    background: #087c55;
+    color: white;
+    margin-left: auto;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 12px;
+    border-top: 1px solid #ddd;
+    gap: 7px;
+}
+
+#chat-input {
+    flex: 1;
+    min-width: 0;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+}
+
+#send-message {
+    background: #087c55;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+@media(max-width: 450px) {
+    #chatbot-window {
+        width: calc(100% - 30px);
+        right: 15px;
+        bottom: 95px;
+    }
+}
+</style>
+
+<!-- Chatbot Button -->
+<button id="chatbot-button" onclick="toggleChat()">
+    💬
+</button>
+
+<!-- Chatbot Window -->
+<div id="chatbot-window">
+
+    <div class="chat-header">
+        <div>
+            <h3>🤖 Shahdol Help Assistant</h3>
+            <small>District Information Chatbot</small>
+        </div>
+        <button id="close-chat" onclick="toggleChat()">×</button>
+    </div>
+
+    <div id="chat-messages">
+        <div class="message bot-message">
+            नमस्कार! 🙏<br>
+            Shahdol District Information Portal में आपका स्वागत है।<br><br>
+            मैं आपकी क्या सहायता कर सकता हूँ?
+        </div>
+    </div>
+
+    <div class="chat-input-area">
+        <input
+            type="text"
+            id="chat-input"
+            placeholder="अपना सवाल लिखें..."
+            onkeypress="if(event.key==='Enter') sendMessage()"
+        >
+        <button id="send-message" onclick="sendMessage()">
+            Send
+        </button>
+    </div>
+
+</div>
+
+<script>
+function toggleChat() {
+    const chat = document.getElementById("chatbot-window");
+
+    chat.style.display =
+        chat.style.display === "block" ? "none" : "block";
+}
+
+function sendMessage() {
+
+    let input = document.getElementById("chat-input");
+    let message = input.value.trim();
+
+    if (message === "") return;
+
+    addMessage(message, "user-message");
+
+    input.value = "";
+
+    setTimeout(() => {
+        let reply = getBotReply(message);
+        addMessage(reply, "bot-message");
+    }, 500);
+}
+
+function addMessage(text, className) {
+
+    let messages = document.getElementById("chat-messages");
+
+    let div = document.createElement("div");
+    div.className = "message " + className;
+    div.textContent = text;
+
+    messages.appendChild(div);
+
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function getBotReply(message) {
+
+    let msg = message.toLowerCase();
+
+    if (msg.includes("hello") || msg.includes("hi") ||
+        msg.includes("namaste")) {
+        return "नमस्कार! 🙏 शाहडोल जिला सूचना पोर्टल में आपका स्वागत है।";
+    }
+
+    if (msg.includes("shahdol") || msg.includes("शहडोल")) {
+        return "शहडोल मध्य प्रदेश का एक जिला है। यह अपने प्राकृतिक संसाधनों, जंगलों और ऐतिहासिक महत्व के लिए जाना जाता है।";
+    }
+
+    if (msg.includes("collector") || msg.includes("कलेक्टर")) {
+        return "शहडोल जिले के वर्तमान कलेक्टर की जानकारी के लिए आधिकारिक जिला वेबसाइट का कलेक्टर एवं जिला मजिस्ट्रेट अनुभाग देखें।";
+    }
+
+    if (msg.includes("tourist") || msg.includes("पर्यटन")) {
+        return "शहडोल जिले में विराट मंदिर (सोहागपुर), बाणसागर बांध और देवलोंद जैसे दर्शनीय स्थल हैं।";
+    }
+
+    if (msg.includes("hospital") || msg.includes("अस्पताल")) {
+        return "शहडोल में जिला चिकित्सालय सहित कई स्वास्थ्य केंद्र उपलब्ध हैं। अस्पतालों की सूची के लिए Directory पेज देखें।";
+    }
+
+    if (msg.includes("education") || msg.includes("school") ||
+        msg.includes("college") || msg.includes("शिक्षा")) {
+        return "शहडोल जिले में स्कूल, कॉलेज और उच्च शिक्षा संस्थान उपलब्ध हैं। अधिक जानकारी के लिए Education सेक्शन देखें।";
+    }
+
+    if (msg.includes("tehsil") || msg.includes("तहसील")) {
+        return "शहडोल जिले की तहसीलों की सूची और संबंधित जानकारी के लिए Directory पेज देखें।";
+    }
+
+    if (msg.includes("history") || msg.includes("इतिहास")) {
+        return "शहडोल का इतिहास, संस्कृति और स्थानीय विरासत जिले की पहचान का महत्वपूर्ण हिस्सा हैं।";
+    }
+
+    if (msg.includes("population") || msg.includes("जनसंख्या")) {
+        return "शहडोल की जनसंख्या संबंधी आधिकारिक जानकारी के लिए नवीनतम जनगणना और जिला सांख्यिकी देखें।";
+    }
+
+    if (msg.includes("thank") || msg.includes("धन्यवाद")) {
+        return "आपका स्वागत है! 😊 शाहडोल जिला पोर्टल पर आने के लिए धन्यवाद।";
+    }
+
+    return "क्षमा करें! मुझे इस सवाल की पूरी जानकारी नहीं है। कृपया शाहडोल जिले, पर्यटन, शिक्षा, अस्पताल या तहसील से संबंधित सवाल पूछें।";
+}
+</script>
+
+<!-- ================= END CHATBOT ================= -->
